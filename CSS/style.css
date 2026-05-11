@@ -1,13 +1,42 @@
-body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+:root {
+    --bs-primary: #415fed;
+    --bs-primary-rgb: 65, 95, 237;
 }
 
-.card {
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: #f2f5fb;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+..card {
     border-radius: 12px;
 }
 
-h1 {
-    font-weight: bold;
+.header-bar {
+    min-height: 80px;
+}
+
+.logo-header {
+    max-height: 48px;
+}
+
+.slogan-header {
+    max-width: 28rem;
+    font-size: 0.98rem;
+    opacity: 0.9;
+}
+
+.btn {
+    transition: transform 0.18s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
 }
 
 .list-group-item{
@@ -16,15 +45,99 @@ h1 {
     align-items: center;
 }
 
-.presente {
-    background-color: #d4edda;
+#containerChamada {
+    min-height: 220px;
 }
 
-.ausente {
-    background-color: #f8d7da;
+#containerChamada .badge {
+    min-width: 100px;
 }
 
 input[type="checkbox"] {
-    transform:scale(1.3);
-    cursor:pointer;
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+.bg-primary, .btn-primary, .text-primary, .border-primary {
+    background-color: #415fed !important;
+    border-color: #415fed !important;
+    color: #ffffff !important;
+}
+
+.btn-primary {
+    transition: ease 0.3s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #1a51bd !important;
+    border-color: #1a51bd !important;
+    transition: ease 0.3s;
+}
+
+.btn-dark,
+.bg-dark,
+.btn-dark:hover,
+.btn-dark:focus {
+    background-color: #342f2f !important;
+    border-color: #342f2f !important;
+    color: #ffffff !important;
+    transition: ease 0.3s;
+}
+
+.btn-dark:hover,
+.btn-dark:focus {
+    background-color: #221d1d !important;
+    border-color: #221d1d !important;
+    transition: ease 0.3s;
+}
+
+.btn-success,
+.bg-success,
+.btn-success:focus {
+    background-color: #54c84a !important;
+    border-color: #54c84a !important;
+    color: #ffffff !important;
+    transition: ease 0.3s;
+}
+
+.btn-success:hover {
+    background-color: #28a44b !important;
+    border-color: #28a44b !important;
+    transition: ease 0.3s;
+}
+
+.btn-danger,
+.bg-danger,
+.btn-danger:focus {
+    background-color: #ed3047 !important;
+    border-color: #ed3047 !important;
+    color: #ffffff !important;
+    transition: ease 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #cb0e30 !important;
+    border-color: #cb0e30 !important;
+    transition: ease 0.3s;
+}
+
+.btn-outline-primary {
+    color: #415fed !important;
+    border-color: #415fed !important;
+    transition: ease 0.3s;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgba(65, 95, 237, 0.1) !important;
+    transition: ease 0.3s;
+    
+}
+
+@media (max-width: 576px) {
+    #containerChamada .d-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
 }

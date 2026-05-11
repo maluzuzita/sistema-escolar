@@ -1,81 +1,501 @@
 <!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sistema Escolar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="./CSS/style.css">
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <link
+      rel="shortcut icon"
+      href="./IMG/favicon_sistemaEscolar.png"
+      type="image/png"
+    />
+  </head>
 
-<body class="bg-light">
-
-    <header class="bg-primary fs-1 text-white p-3 ">ClasseWeb</header>
+  <body class="bg-light">
+    <header
+      class="bg-primary d-flex align-items-center justify-content-between text-white p-3 header-bar"
+    >
+      <img
+        src="./IMG/logotipo_sistemaEscolar.png"
+        alt="Logotipo Sistema Escolar"
+        class="logo-header"
+      />
+      <div class="text-end slogan-header">
+        Inteligência educacional em cada métrica.
+      </div>
+    </header>
 
     <div class="container py-4">
-        <h1 class="text-center mb-4"> 📒 Sistema Escolar 🏫</h1>
-
-        <div class="row d-flex justify-content-center">
-
-            <!-- SALAS -->
-            <div class="col-md-4">
-                <div class="card shadow-sm p-3">
-                    <h5>Criar Sala</h5>
-
-                    <input type="text" id="nomeSala" class="form-control mb-2" placeholder="Nome da sala">
-                    <select class="form-select invisible mb-2"></select>
-                    <button class="btn btn-primary w-100" onclick="criarSala()"> Criar </button>
-                </div>
-            </div>
-
-            <!-- ALUNOS -->
-            <div class="col-md-4">
-                <div class="card shadow-sm p-3 mb-3">
-                    <h5>Cadastrar Alunos</h5>
-                    <input type="text" id="nomeAluno" class="form-control mb-2" placeholder="Nome do Aluno">
-                    <select class="form-select mb-2" id="selectSala">
-                        <option value="" selected disabled>Selecione uma sala</option>
-                    </select>
-                    <button class="btn btn-success w-100" onclick="cadastrarAluno()"> Cadastrar </button>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow-sm p-3 mb-3">
-                    <h5>Chamada</h5>
-                    <input type="date" id="dataChamada" class="form-control mb-2">
-                    <select class="form-select mb-2" id="filtroSala">
-                        <option value="" selected disabled>Selecione uma sala</option>
-                    </select>
-                    <button class="btn btn-dark w-100" onclick="carregarChamada()">Carregar</button>
-                </div>
-            </div>
-            <!-- FIM ALUNOS -->
+      <div class="card shadow-sm p-3">
+        <div class="mb-4 text-center">
+          <h2 class="mb-2">Painel de Inteligência Escolar</h2>
+          <p class="text-muted mb-0">
+            Gerencie salas, alunos, presenças e relatórios com segurança,
+            histórico e clareza.
+          </p>
         </div>
+        <ul
+          class="nav nav-pills mb-4 justify-content-center"
+          id="pills-tab"
+          role="tablist"
+        >
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="pills-cadastro-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#pills-cadastro"
+              type="button"
+              role="tab"
+            >
+              Cadastros
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-chamada-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#pills-chamada"
+              type="button"
+              role="tab"
+            >
+              Chamada Diária
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-relatorios-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#pills-relatorios"
+              type="button"
+              role="tab"
+            >
+              Relatórios
+            </button>
+          </li>
+        </ul>
+        <hr>
 
-            <!-- LISTA -->
+        <div class="tab-content" id="pills-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="pills-cadastro"
+            role="tabpanel"
+          >
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="card shadow-sm p-3 h-100">
+                  <h5><i class="bi bi-door-open"></i> Gerenciar Salas</h5>
+                  <form
+                    onsubmit="
+                      event.preventDefault();
+                      criarSala();
+                    "
+                  >
+                    <div class="mb-3">
+                      <label for="nomeSala" class="form-label"
+                        >Nome da sala</label
+                      >
+                      <input
+                        type="text"
+                        id="nomeSala"
+                        class="form-control"
+                        placeholder="Digite o nome da sala"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="corSala" class="form-label">Cor da sala</label>
+                      <input type="color" id="corSala" class="form-control form-control-color w-100" value="#007bff" />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                      <i class="bi bi-door-open-fill me-2"></i> Criar Sala
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card shadow-sm p-3 h-100">
+                  <h5><i class="bi bi-person-plus"></i> Cadastrar Alunos</h5>
+                  <form
+                    onsubmit="
+                      event.preventDefault();
+                      cadastrarAluno();
+                    "
+                  >
+                    <div class="mb-3">
+                      <label for="nomeAluno" class="form-label"
+                        >Nome do aluno</label
+                      >
+                      <input
+                        type="text"
+                        id="nomeAluno"
+                        class="form-control"
+                        placeholder="Digite o nome do aluno"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="selectSala" class="form-label">Sala</label>
+                      <select class="form-select" id="selectSala">
+                        <option value="" selected disabled>
+                          Selecione uma sala
+                        </option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">
+                      <i class="bi bi-person-plus-fill me-2"></i> Cadastrar
+                      Aluno
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card shadow-sm p-3 mt-4">
+              <h5>Lista Geral de Alunos</h5>
+              <ul id="listaAlunos" class="list-group"></ul>
+            </div>
+            <div class="card shadow-sm p-3 mt-4">
+              <h5>Lista de Salas</h5>
+              <ul id="listaSalas" class="list-group"></ul>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="pills-chamada" role="tabpanel">
             <div class="card shadow-sm p-3 mb-3">
-                <h5>Lista de Alunos</h5>
-                <ul id="listaAlunos" class="list-group"></ul>
+              <h5>Registro de Presença</h5>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="dataChamada" class="form-label"
+                    >Data da chamada</label
+                  >
+                  <input type="date" id="dataChamada" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                  <label for="filtroSala" class="form-label">Sala</label>
+                  <select class="form-select" id="filtroSala">
+                    <option value="" selected disabled>Selecione a sala</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                class="btn btn-dark w-100 mt-2"
+                onclick="carregarChamada()"
+              >
+                <i class="bi bi-clipboard-data me-2"></i> Carregar Lista de
+                Chamada
+              </button>
             </div>
+            <div id="containerChamada"></div>
+          </div>
 
-            <!-- CHAMADA -->
+          <div class="tab-pane fade" id="pills-relatorios" role="tabpanel">
             <div class="card shadow-sm p-3">
-                <h5>Registro de Presença</h5>
-                <div id="chamada"></div>
+              <div
+                class="d-flex flex-wrap justify-content-between align-items-center mb-3"
+              >
+                <h5 class="mb-0">Desempenho por Aluno</h5>
+                <div class="btn-group mt-2 mt-md-0" role="group">
+                  <button
+                    class="btn btn-outline-secondary"
+                    onclick="exportarRelatoriosJSON()"
+                  >
+                    <i class="bi bi-file-earmark-code me-2"></i>Exportar JSON
+                  </button>
+                  <button
+                    class="btn btn-outline-secondary"
+                    onclick="exportarRelatoriosCSV()"
+                  >
+                    <i class="bi bi-file-earmark-spreadsheet me-2"></i>Exportar
+                    CSV
+                  </button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th>Aluno</th>
+                      <th>Sala</th>
+                      <th>Faltas</th>
+                      <th>% Presença</th>
+                      <th>Último Dia Presente</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabelaRelatorios"></tbody>
+                </table>
+              </div>
             </div>
+            <div class="card shadow-sm p-3 mt-4">
+              <h5>Resumo por Sala</h5>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th>Sala</th>
+                      <th>Alunos</th>
+                      <th>Média de Presença</th>
+                      <th>Melhor Aluno</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabelaRelatoriosSala"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <footer class="footer mt-auto p-4 bg-primary text-white fw-bold text-center">©2026 Enzo Barbino. Todos os direitos reservados.</footer>
+    <footer class="footer mt-auto p-4 bg-primary text-white text-center">
+      <strong>©2026</strong> Maria Luiza.
+      <strong>Todos os direitos reservados.</strong>
+    </footer>
 
+    <!-- MODAL. -->
+    <!-- Modais irão substituir alerts para um UI e UX melhor. -->
+    <div
+      class="modal fade"
+      id="modalAlert"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- O título poderá ser substituido via JS. -->
+            <h5 class="modal-title" id="tituloAlerta">Atenção</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- É aqui que a mensagem será inserida via JS. -->
+          <div class="modal-body" id="mensagemAlerta"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Entendido
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalConfirm"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tituloConfirm">Confirmação</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="confirmBody"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="confirmNoBtn"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-primary" id="confirmYesBtn">
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalInput"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tituloInput">Entrada</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p id="inputBody" class="mb-3"></p>
+            <input id="inputField" type="text" class="form-control" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="inputCancelBtn"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-primary" id="inputConfirmBtn">
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalJustificativa"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tituloJustificativa">
+              Justificativa Necessária
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Por favor, informe a justificativa para alterar uma chamada de
+              data retroativa.
+            </p>
+            <textarea
+              id="textoJustificativa"
+              class="form-control"
+              rows="4"
+              placeholder="Digite a justificativa..."
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="confirmarJustificativaBtn"
+            >
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalEditarSala" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Sala</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="editNomeSala" class="form-label">Nome da sala</label>
+              <input type="text" id="editNomeSala" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label for="editCorSala" class="form-label">Cor da sala</label>
+              <input type="color" id="editCorSala" class="form-control form-control-color w-100" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="confirmarEditarSalaBtn">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalHistorico"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tituloHistorico">
+              Histórico de Presença
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="historicoConteudo"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Script do Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
     <script src="./JS/app.js"></script>
-</body>
-
+  </body>
 </html>
