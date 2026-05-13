@@ -1,7 +1,3 @@
-Abaixo, corrigi a estrutura, limpei os espaços inválidos e garanti que todos os blocos de código `javascript` fechem corretamente.
-
----
-
 # Projeto: Sistema Escolar
 
 Atividade escolar com a premissa de resolver os seguintes problemas propostos: sumiço de dados e registros de presença, não existência histórico de alteração e relatórios inconsistentes. Para resolver isso, criei esta aplicação que simula uma estrutura funcional de um sistema escolar.
