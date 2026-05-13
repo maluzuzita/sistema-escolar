@@ -546,6 +546,104 @@ function removerSala(id) {
 }
 
 /**
+ * ----- REQUISITO 1 e 5: Edição de Aluno com Validação.
+ * Esta função permite editar os dados de um aluno, vinculando-o a uma nova sala
+ * se necessário, e garantindo que não haja duplicidade de nomes na mesma sala.
+ */
+function editarAluno(id) {
+    const alunos = getData("alunos");
+    const salas = getData("salas");
+    const aluno = alunos.find(a => a.id == id);
+    if (!aluno) return;
+
+    // Busca elementos do modal
+    const modalEl = document.getElementById('modalEditarAluno');
+    const editNomeAluno = document.getElementById('editNomeAluno');
+    const editSelectSala = document.getElementById('editSelectSala');
+    const confirmarBtn = document.getElementById('confirmarEditarAlunoBtn');
+
+    // Verificação de existência dos elementos
+    if (!modalEl || !editNomeAluno || !editSelectSala || !confirmarBtn) {
+        exibirAlerta("Erro de interface", "Elementos do modal de edição de aluno não encontrados no HTML.");
+        return;
+    }
+
+    return new Promise((resolve) => {
+        // Preenche campos do modal com os dados atuais
+        editNomeAluno.value = aluno.nome;
+        // Preenche o select de salas
+        editSelectSala.innerHTML = `<option value="" disabled>Selecione uma sala</option>`;
+        salas.forEach(s => editSelectSala.innerHTML += `<option value="${s.id}" ${s.id == aluno.salaId ? 'selected' : ''}>${s.nome}</option>`);
+
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+
+        const onConfirm = () => {
+            const novoNome = editNomeAluno.value.trim();
+            const novaSalaId = editSelectSala.value;
+
+            if (!novoNome || !novaSalaId) {
+                exibirAlerta("Erro de cadastro", "Preencha o nome e selecione uma sala.");
+                return;
+            }
+
+            // Evita duplicidade dentro da mesma sala
+            const alunoExiste = alunos.find(a =>
+                a.nome.toLowerCase() === novoNome.toLowerCase() && a.salaId == novaSalaId && a.id != id
+            );
+            if (alunoExiste) {
+                exibirAlerta("Erro de cadastro", "Já existe este aluno nesta sala.");
+                return;
+            }
+
+            // Atualiza e persiste
+            aluno.nome = novoNome;
+            aluno.salaId = novaSalaId;
+            setData("alunos", alunos);
+
+            // Sincroniza interface
+            listarAlunosGeral();
+            gerarRelatorios();
+
+            exibirAlerta("Sucesso!", `Aluno atualizado.`);
+            modal.hide();
+            resolve();
+        };
+
+        confirmarBtn.onclick = onConfirm;
+
+        modalEl.addEventListener('hidden.bs.modal', () => {
+            confirmarBtn.onclick = null;
+            resolve();
+        }, { once: true });
+    });
+}
+
+/**
+ * ----- REQUISITO 1 e 5: Remoção Segura de Aluno.
+ * Esta função remove um aluno e todos os seus registros de presença associados.
+ * A exclusão é precedida por uma confirmação do usuário.
+ */
+function removerAluno(id) {
+    return abrirModalConfirm("Confirmação", "Deseja realmente remover este aluno?")
+        .then(confirmed => {
+            if (!confirmed) return;
+
+            // Remove aluno e quaisquer registros de presença associados
+            const alunos = getData("alunos").filter(a => a.id != id);
+            setData("alunos", alunos);
+
+            const presencas = getData("presencas").filter(p => p.alunoId != id);
+            setData("presencas", presencas);
+
+            listarAlunosGeral();
+            gerarRelatorios();
+
+            exibirAlerta("Removido", "O aluno foi excluído com sucesso.");
+        });
+}
+
+/**
  * ----- REQUISITO 2, 3, 5 e 7: Interface de Chamada com Auditoria.
  * Esta função renderiza dinamicamente a lista de presença, cruzando dados 
  * de alunos com registros históricos para garantir que nenhuma informação seja perdida.
