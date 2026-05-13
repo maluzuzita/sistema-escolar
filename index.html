@@ -87,7 +87,7 @@
             </button>
           </li>
         </ul>
-        <hr>
+        <hr />
 
         <div class="tab-content" id="pills-tabContent">
           <div
@@ -117,8 +117,15 @@
                       />
                     </div>
                     <div class="mb-3">
-                      <label for="corSala" class="form-label">Cor da sala</label>
-                      <input type="color" id="corSala" class="form-control form-control-color w-100" value="#007bff" />
+                      <label for="corSala" class="form-label"
+                        >Cor da sala</label
+                      >
+                      <input
+                        type="color"
+                        id="corSala"
+                        class="form-control form-control-color w-100"
+                        value="#007bff"
+                      />
                     </div>
                     <button type="submit" class="btn btn-primary w-100">
                       <i class="bi bi-door-open-fill me-2"></i> Criar Sala
@@ -430,12 +437,24 @@
       </div>
     </div>
 
-    <div class="modal fade" id="modalEditarSala" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalEditarSala"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Editar Sala</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <div class="mb-3">
@@ -444,12 +463,28 @@
             </div>
             <div class="mb-3">
               <label for="editCorSala" class="form-label">Cor da sala</label>
-              <input type="color" id="editCorSala" class="form-control form-control-color w-100" />
+              <input
+                type="color"
+                id="editCorSala"
+                class="form-control form-control-color w-100"
+              />
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" id="confirmarEditarSalaBtn">Confirmar</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="confirmarEditarSalaBtn"
+            >
+              Confirmar
+            </button>
           </div>
         </div>
       </div>
@@ -484,6 +519,57 @@
               data-bs-dismiss="modal"
             >
               Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Edição de Aluno -->
+    <div
+      class="modal fade"
+      id="modalEditarAluno"
+      tabindex="-1"
+      aria-labelledby="tituloEditarAluno"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tituloEditarAluno">Editar Aluno</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="editNomeAluno" class="form-label"
+                >Nome do Aluno</label
+              >
+              <input type="text" class="form-control" id="editNomeAluno" />
+            </div>
+            <div class="mb-3">
+              <label for="editSelectSala" class="form-label">Sala</label>
+              <select class="form-select" id="editSelectSala"></select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="confirmarEditarAlunoBtn"
+            >
+              Salvar
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
             </button>
           </div>
         </div>
